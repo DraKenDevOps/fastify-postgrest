@@ -1,0 +1,26 @@
+{
+    "name": "fastify-postgrest",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon --delay 800ms src/index.ts",
+        "start": "ts-node src/index.ts",
+        "serve": "pm2-runtime ./dist/index.js",
+        "build": "tsc",
+        "test": "jest",
+        "test:watch": "jest --watch"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "dayjs": "^1.11.10",
+        "fastify": "^4.26.1",
+        "fs-extra": "^11.2.0",
+        "pg": "^8.11.3",
+        "prom-client": "^15.1.0",
+        "rotating-file-stream": "^3.2.1",
+        "winston": "^3.11.0"
+    }
+}
