@@ -15,12 +15,26 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@fastify/jwt": "^8.0.0",
+        "cls-hooked": "^4.2.2",
         "dayjs": "^1.11.10",
+        "dotenv": "^16.4.5",
         "fastify": "^4.26.1",
         "fs-extra": "^11.2.0",
+        "jsonwebtoken": "^9.0.2",
         "pg": "^8.11.3",
         "prom-client": "^15.1.0",
         "rotating-file-stream": "^3.2.1",
         "winston": "^3.11.0"
+    },
+    "devDependencies": {
+        "@types/cls-hooked": "^4.3.8",
+        "@types/fs-extra": "^11.0.4",
+        "@types/jsonwebtoken": "^9.0.6",
+        "@types/node": "^20.11.21",
+        "@types/pg": "^8.11.2",
+        "nodemon": "^3.1.0",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.3.3"
     }
 }
