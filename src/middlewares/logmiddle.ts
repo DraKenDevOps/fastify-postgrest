@@ -11,37 +11,18 @@ export function logRequestResponse(req: FastifyRequest, res: FastifyReply, next:
     const requestId = generateUUIDV4()
     const tracingData = ""
 
-    // let requestBody = req.body
-    // if (req.body) {
-    //     try {
-    //         requestBody = JSON.stringify(req.body as { Body: any })
-    //     } catch (error) {
-    //         requestBody = req.body as { Body: any }
-    //     }
-    // }
-    
-    logger.info("Request", {
-        method: req.method,
-        url: req.originalUrl,
-        requestId,
-        ip,
-        requestBody: req.body,
-        tracingData
-    })
-
     const originalSend = res.send
     const startTime = Date.now()
 
     // @ts-ignore
     res.send = function (data: any) {
-        const responseTime = Date.now() - startTime
+        const time = Date.now() - startTime
 
-        // Attempt to parse the response body as JSON; if it fails, use the original data
-        let responseBody
+        let body
         try {
-            responseBody = JSON.parse(data)
-        } catch (e: any) {
-            responseBody = data
+            body = JSON.parse(data)
+        } catch (e) {
+            body = data
         }
 
         let statusCode = res.statusCode.toString()
@@ -52,11 +33,19 @@ export function logRequestResponse(req: FastifyRequest, res: FastifyReply, next:
             level = "error"
         }
 
-        logger.log(level, "Response", {
+        logger.log(level, "RequestResponse", {
             requestId,
-            statusCode: Number(statusCode),
-            responseTime,
-            responseBody,
+            request: {
+                method: req.method,
+                url: req.originalUrl,
+                ip,
+                requestBody: logNameSpace.get("requestBody")
+            },
+            response: {
+                statusCode: Number(statusCode),
+                time,
+                body
+            },
             tracingData
         })
         originalSend.apply(res, [arguments[0]])

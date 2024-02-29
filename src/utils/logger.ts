@@ -23,11 +23,6 @@ const customFormat = winston.format.combine(
                 level: `${level}`.toUpperCase(),
                 message,
                 requestId: logNameSpace.get("requestId"),
-                tracingData: logNameSpace.get("tracingData"),
-                username: logNameSpace.get("username"),
-                user_id: logNameSpace.get("user_id"),
-                user_type: logNameSpace.get("user_type"),
-                user_type_name: logNameSpace.get("user_type_name"),
                 ...meta
             },
             null,

@@ -13,10 +13,7 @@ declare module "fastify" {
 
 declare module "@fastify/jwt" {
     export interface FastifyJWT {
-        payload: {
-            user_id: number
-            username: string
-        }
+        payload: object
     }
 }
 
@@ -28,10 +25,7 @@ declare global {
         authenticate: any
     }
     interface FastifyJWT {
-        payload: {
-            user_id: number
-            username: string
-        }
+        payload: object
     }
     // namespace Express {
     //     export interface Request {
